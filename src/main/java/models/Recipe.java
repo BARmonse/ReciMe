@@ -31,12 +31,18 @@ public class Recipe {
     @Lob
     private String instructions;
 
+    private Boolean vegetarian;
+
+    private Integer servings;
+
     public static Recipe fromDTO(RecipeCreationDTO dto) {
         return Recipe.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
                 .ingredients(dto.getIngredients())
                 .instructions(dto.getInstructions())
+                .vegetarian(dto.getVegetarian())
+                .servings(dto.getServings())
                 .build();
     }
 }

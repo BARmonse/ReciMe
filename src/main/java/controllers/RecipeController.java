@@ -1,6 +1,7 @@
 package controllers;
 
 import dtos.RecipeCreationDTO;
+import dtos.RecipeSearchDTO;
 import lombok.AllArgsConstructor;
 import models.Recipe;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,13 @@ public class RecipeController {
     @GetMapping("/{id}")
     public Recipe getRecipeById(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
+    }
+
+    @GetMapping("/search")
+    public List<Recipe> searchRecipes(
+            @RequestParam(required = false) RecipeSearchDTO dto
+    ) {
+        return recipeService.searchRecipes(dto);
     }
 
     @PostMapping

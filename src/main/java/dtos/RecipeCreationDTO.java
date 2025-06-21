@@ -10,5 +10,7 @@ public class RecipeCreationDTO {
     private String description;
     private List<String> ingredients;
     private String instructions;
+    private Boolean vegetarian;
+    private Integer servings;
 }
 

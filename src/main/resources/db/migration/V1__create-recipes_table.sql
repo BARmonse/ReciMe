@@ -3,5 +3,7 @@ CREATE TABLE IF NOT EXISTS recipes (
     title TEXT NOT NULL,
     description TEXT,
     ingredients TEXT[] NOT NULL,
-    instructions TEXT
+    instructions TEXT,
+    vegetarian BOOLEAN NOT NULL,
+    servings INTEGER NOT NULL
 );

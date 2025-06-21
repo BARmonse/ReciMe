@@ -1,5 +1,6 @@
 package services;
 
+import dtos.RecipeCreationDTO;
 import lombok.AllArgsConstructor;
 import models.Recipe;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class RecipeService {
         return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe not found"));
     }
 
-    public Recipe createRecipe(Recipe recipe) {
-        return recipeRepository.save(recipe);
+    public Recipe createRecipe(RecipeCreationDTO recipeCreationDTO) {
+        return recipeRepository.save(Recipe.fromDTO(recipeCreationDTO));
     }
 
     public Recipe updateRecipe(Long id, Recipe updatedRecipe) {

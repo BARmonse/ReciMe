@@ -1,5 +1,6 @@
 package controllers;
 
+import dtos.RecipeCreationDTO;
 import lombok.AllArgsConstructor;
 import models.Recipe;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class RecipeController {
     }
 
     @PostMapping
-    public Recipe createRecipe(@RequestBody Recipe recipe) {
+    public Recipe createRecipe(@RequestBody RecipeCreationDTO recipe) {
         return recipeService.createRecipe(recipe);
     }
 

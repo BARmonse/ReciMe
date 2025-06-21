@@ -1,7 +1,9 @@
 package models;
 
+import dtos.RecipeCreationDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "recipes")
+@Builder
 public class Recipe {
 
     @Id
@@ -27,4 +30,13 @@ public class Recipe {
 
     @Lob
     private String instructions;
+
+    public static Recipe fromDTO(RecipeCreationDTO dto) {
+        return Recipe.builder()
+                .title(dto.getTitle())
+                .description(dto.getDescription())
+                .ingredients(dto.getIngredients())
+                .instructions(dto.getInstructions())
+                .build();
+    }
 }

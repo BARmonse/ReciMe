@@ -2,18 +2,6 @@
 
 A Spring Boot REST API for managing and searching recipes with PostgreSQL database support.
 
-## ✨ Features
-
-- **CRUD Operations** for recipes
-- **Advanced Search** with multiple criteria:
-  - Vegetarian/non-vegetarian filter
-  - Servings count filter
-  - Ingredient inclusion/exclusion (with partial matching)
-  - Instruction text search
-- **PostgreSQL Array Support** for ingredients
-- **Docker Compose** for easy database setup
-- **Flyway Migration** for database schema management
-
 ## 🛠 Tech Stack
 
 - **Backend**: Spring Boot 3.5.0

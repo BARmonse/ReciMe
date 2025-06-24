@@ -2,18 +2,6 @@
 
 A Spring Boot REST API for managing and searching recipes with PostgreSQL database support.
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Database Setup](#database-setup)
-- [Running the Application](#running-the-application)
-- [API Documentation](#api-documentation)
-- [Usage Examples](#usage-examples)
-- [Project Structure](#project-structure)
-
 ## ✨ Features
 
 - **CRUD Operations** for recipes
@@ -180,13 +168,7 @@ GET /api/v1/recipes/search?instructionSearch=microwave
 
 #### Ingredient Search (Multiple ways)
 ```http
-# Multiple parameters
-GET /api/v1/recipes/search?includedIngredients=chicken&includedIngredients=rice
-
-# Comma-separated single parameter
 GET /api/v1/recipes/search?includedIngredients=chicken,rice
-
-# Exclude ingredients
 GET /api/v1/recipes/search?excludedIngredients=onion&excludedIngredients=garlic
 ```
 

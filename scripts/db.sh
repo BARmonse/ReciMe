@@ -46,16 +46,16 @@ function recreate_db() {
 
 function show_status() {
     echo "Database container status:"
-    docker ps -f name=teg-postgres
+    docker ps -f name=recime-postgres-db
 }
 
 function show_logs() {
-    docker logs -f teg-postgres
+    docker logs -f recime-postgres-db
 }
 
 function wait_for_db() {
     echo "Waiting for database to be ready..."
-    until docker exec teg-postgres pg_isready -U postgres > /dev/null 2>&1; do
+    until docker exec recime-postgres-db pg_isready -U postgres > /dev/null 2>&1; do
         echo -n "."
         sleep 1
     done

@@ -1,16 +1,16 @@
-package controllers;
+package recime.controllers;
 
-import dtos.RecipeCreationDTO;
-import dtos.RecipeSearchDTO;
+import recime.dtos.RecipeCreationDTO;
+import recime.dtos.RecipeSearchDTO;
 import lombok.AllArgsConstructor;
-import models.Recipe;
+import recime.models.Recipe;
 import org.springframework.web.bind.annotation.*;
-import services.RecipeService;
+import recime.services.RecipeService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/recipes")
+@RequestMapping("/api/v1/recipes")
 @AllArgsConstructor
 public class RecipeController {
 
@@ -21,16 +21,19 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/recipe/{id}")
     public Recipe getRecipeById(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
 
+    @GetMapping("/recipe")
+    public Recipe getRecipeByName(@RequestParam String name) { 
+        return recipeService.getRecipeByName(name); 
+    }
+
     @GetMapping("/search")
-    public List<Recipe> searchRecipes(
-            @RequestParam(required = false) RecipeSearchDTO dto
-    ) {
-        return recipeService.searchRecipes(dto);
+    public List<Recipe> searchRecipes(@ModelAttribute RecipeSearchDTO dto) { 
+        return recipeService.searchRecipes(dto); 
     }
 
     @PostMapping
@@ -47,4 +50,4 @@ public class RecipeController {
     public void deleteRecipe(@PathVariable Long id) {
         recipeService.deleteRecipe(id);
     }
-}
+} 

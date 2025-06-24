@@ -1,11 +1,13 @@
-package models;
+package recime.models;
 
-import dtos.RecipeCreationDTO;
+import recime.dtos.RecipeCreationDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -25,10 +27,10 @@ public class Recipe {
     private String description;
 
     @Column(columnDefinition = "text[]")
-    @ElementCollection
+    @JdbcTypeCode(SqlTypes.ARRAY)
     private List<String> ingredients;
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String instructions;
 
     private Boolean vegetarian;

@@ -1,4 +1,4 @@
-package dtos;
+package recime.dtos;
 
 import lombok.Data;
 

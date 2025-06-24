@@ -2,20 +2,37 @@
 
 A Spring Boot REST API for managing and searching recipes with PostgreSQL database support.
 
+## Some Technical Decisions:
+
+### 1. **PostgreSQL for Ingredients as Arrays**
+- Ingredients are stored as `text[]` arrays in PostgreSQL for flexible, efficient storage and querying.
+
+### 2. **Native SQL for Advanced Search**
+- Ingredient search uses a native SQL query with `unnest` and `LIKE` for partial, case-insensitive matching.
+- AND logic is enforced so all search terms must be present in the recipe's ingredients.
+- This approach is more efficient and expressive than JPA Criteria API for array operations. Also it's less code haha.
+
+### 3. **@ModelAttribute for Search DTO**
+- The search endpoint uses `@ModelAttribute` to automatically bind query parameters to a DTO, supporting multiple values and type conversion.
+- Simplifies controller code and improves maintainability.
+
+### 4. **Flyway for Database Migrations**
+- Ensures consistent schema management.
+
+---
+
 ## 🛠 Tech Stack
 
 - **Backend**: Spring Boot 3.5.0
 - **Database**: PostgreSQL 14.17
-- **ORM**: Spring Data JPA with Hibernate
 - **Migration**: Flyway
 - **Build Tool**: Maven
-- **Containerization**: Docker & Docker Compose
 - **Language**: Java 17
 
 ## 📋 Prerequisites
 
-- Java 17 or higher
-- Maven 3.6+
+- Java 17
+- Maven
 - Docker & Docker Compose
 - Git
 
@@ -37,8 +54,6 @@ A Spring Boot REST API for managing and searching recipes with PostgreSQL databa
    mvn spring-boot:run
    ```
 
-The API will be available at `http://localhost:8080`
-
 ## 🗄 Database Setup
 
 ### Using the provided script:
@@ -55,7 +70,7 @@ The API will be available at `http://localhost:8080`
 # Stop database
 ./scripts/db.sh stop
 
-# Recreate database (WARNING: deletes all data)
+# Recreate database(Deletes all the data)
 ./scripts/db.sh recreate
 ```
 

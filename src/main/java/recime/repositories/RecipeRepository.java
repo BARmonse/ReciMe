@@ -16,7 +16,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long>, JpaSpecif
     Optional<Recipe> findByTitle(String name);
 
     @Query(value = """
-    SELECT * FROM recipes 
+    SELECT * FROM recipes\s
     WHERE (:vegetarian IS NULL OR vegetarian = :vegetarian)
       AND (:servings IS NULL OR servings = :servings)
       AND (:instructionSearch IS NULL OR LOWER(instructions) LIKE CONCAT('%', LOWER(:instructionSearch), '%'))
@@ -24,18 +24,18 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long>, JpaSpecif
           SELECT COUNT(*) = array_length(string_to_array(:includedIngredients, ' '), 1)
           FROM unnest(string_to_array(:includedIngredients, ' ')) AS search_term
           WHERE EXISTS (
-              SELECT 1 FROM unnest(ingredients) AS ingredient 
+              SELECT 1 FROM unnest(ingredients) AS ingredient\s
               WHERE LOWER(ingredient) LIKE CONCAT('%', LOWER(search_term), '%')
           )
       ))
       AND (:excludedIngredients IS NULL OR NOT EXISTS (
           SELECT 1 FROM unnest(string_to_array(:excludedIngredients, ' ')) AS search_term
           WHERE EXISTS (
-              SELECT 1 FROM unnest(ingredients) AS ingredient 
+              SELECT 1 FROM unnest(ingredients) AS ingredient\s
               WHERE LOWER(ingredient) LIKE CONCAT('%', LOWER(search_term), '%')
           )
       ))
-    """, nativeQuery = true)
+   \s""", nativeQuery = true)
     List<Recipe> searchRecipes(
             @Param("vegetarian") Boolean vegetarian,
             @Param("servings") Integer servings,
